@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NASA Abbreviation',
+      title: 'Kaufmann-Kennzahlen',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       // To Navigate to the first page

@@ -23,7 +23,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("NASA Abbreviations"),
+        title: const Text("Kaufmann-Kennzahlen"),
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
