@@ -14,8 +14,8 @@ class AboutScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: const[
             Text(
-              "Postanschrift",
-              style: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold),
+              "\n\nPostanschrift",
+              style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 50.0,
