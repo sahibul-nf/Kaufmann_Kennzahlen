@@ -29,7 +29,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 children: [
                   const SizedBox(height: 50),
                   Image.asset('assets/images/smallview.png'),
-                  const Text("Welcome",
+                  const Text("Willkommen",
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.white,
@@ -49,7 +49,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                         children: [
                       TextSpan(
-                      text: "   GLOSARY",
+                      text: "   GLOSSAR",
                      // textAlign: TextAlign.center,
                       style: GoogleFonts.oswald(
                         textStyle: const TextStyle(
@@ -68,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   const Padding(
                     padding: EdgeInsets.all(30.0),
                     child: Text(
-                      'Use this glossary to learn and understand vocabulary, terms and\n  definitions.',
+                      'Nutzen Sie dieses Glossar, um Vokabeln, Begriffe und Definitionen zu lernen und zu verstehen.',
                       maxLines: 5,
                       textAlign: TextAlign.center,
                       style: TextStyle(
