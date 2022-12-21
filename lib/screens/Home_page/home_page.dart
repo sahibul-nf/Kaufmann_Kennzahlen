@@ -23,7 +23,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kaufmann-Kennzahlen"),
+        title: const Text("Kaufleute - Kennzahlen"),
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> {
               },
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                hintText: 'Type Something',
+                hintText: 'Schreibe etwas',
                 prefixIcon: const Icon(Icons.search),
                 isDense: true,
                 suffixIcon: IconButton(
