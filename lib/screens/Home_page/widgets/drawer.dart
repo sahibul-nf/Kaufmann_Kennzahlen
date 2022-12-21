@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
           Image.asset("assets/happy.gif"),
           ListTile(
             leading: const Icon(Icons.info),
-            title: const Text("About Us"),
+            title: const Text("Über Uns"),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const AboutScreen(),
@@ -23,7 +23,7 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.language),
-            title: const Text("Sources"),
+            title: const Text("Quellen"),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => Scaffold(
@@ -38,7 +38,7 @@ class AppDrawer extends StatelessWidget {
                         children: const <Widget>[
                           Center(
                             child: Text(
-                              "1.https://www.nasa.gov/directorates/heo/scan/definitions/acronyms/index.html\n2.https://images-api.nasa.gov",
+                              "https://www.spasslerndenk.com/ihk-lernkarten",
                               style: TextStyle(fontSize: 20.0),
                             ),
                           )
@@ -56,7 +56,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text("App Veriosn 1.0.0"),
             onTap: () => showAboutDialog(
               context: context,
-              applicationName: 'Nasa Abbreviations',
+              applicationName: 'Kaufleute - Kennzahlen',
               applicationVersion: '1.0.0',
             ),
           ),
