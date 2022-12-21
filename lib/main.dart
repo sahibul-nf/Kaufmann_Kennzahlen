@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kaufmann-Kennzahlen',
+      title: 'Kaufleute - Kennzahlen',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       // To Navigate to the first page
