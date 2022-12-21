@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> {
               },
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                hintText: 'Schreibe etwas',
+                hintText: 'Schreibe etwas...',
                 prefixIcon: const Icon(Icons.search),
                 isDense: true,
                 suffixIcon: IconButton(
