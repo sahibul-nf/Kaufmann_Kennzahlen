@@ -23,7 +23,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kaufleute - Kennzahlen"),
+        title: const Text("Kaufleute - Begriffe"),
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
