@@ -53,7 +53,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(height: 10.0),
           ListTile(
             leading: const Icon(Icons.info_outline),
-            title: const Text("App Veriosn 1.0.0"),
+            title: const Text("App Version 1.0.0"),
             onTap: () => showAboutDialog(
               context: context,
               applicationName: 'Kaufleute - Kennzahlen',
