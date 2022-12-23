@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../about_page/about_screen.dart';
 
-
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
@@ -48,16 +47,6 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ),
-          const Divider(height: 10.0),
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text("App Version 1.0.0"),
-            onTap: () => showAboutDialog(
-              context: context,
-              applicationName: 'Kaufleute - Kennzahlen',
-              applicationVersion: '1.0.0',
             ),
           ),
         ],
