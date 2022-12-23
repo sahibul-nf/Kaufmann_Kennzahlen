@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../data/data.dart';
 import 'widgets/drawer.dart';
 
@@ -11,14 +14,22 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  static List<String> _abbreviationKeys = [];
+  List _items = [];
   final _controller = TextEditingController();
   @override
   void initState() {
     super.initState();
-    _abbreviationKeys = abbreviations.keys.toList();
+    readJson();
   }
 
+// Fetch content from the json file
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/data/data.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["items"];
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +46,13 @@ class HomePageState extends State<HomePage> {
             child: TextField(
               controller: _controller,
               onChanged: (t) {
-                _abbreviationKeys = abbreviations.keys
-                    .where((element) => element.startsWith(t))
-                    .toList();
-                setState(() {});
+                if(_controller.text == ""){
+                  readJson();
+                }else {
+                  _items = _items.where((element) =>
+                      element['title'].toString().toLowerCase().contains(t.toLowerCase())).toList();
+                  setState(() {});
+                }
               },
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -47,7 +61,7 @@ class HomePageState extends State<HomePage> {
                 isDense: true,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    _abbreviationKeys = abbreviations.keys.toList();
+                    readJson();
                     FocusScope.of(context).unfocus();
                     setState(() {});
                     _controller.clear();
@@ -59,7 +73,7 @@ class HomePageState extends State<HomePage> {
           ),
           Flexible(
             child: ListView.builder(
-              itemCount: _abbreviationKeys.length,
+              itemCount: _items.length,//_abbreviationKeys.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, i) {
                 return Card(
@@ -72,16 +86,16 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 18.0),
                       child: CircleAvatar(
                         backgroundColor: Theme.of(context).colorScheme.primary,
-                        child: Text(_abbreviationKeys[i][0]),
+                        child: Text(_items[i]['abbreviation']),
                       ),
                     ),
                     title: Text(
-                      _abbreviationKeys[i],
-                      style: const TextStyle(
+                        _items[i]['title'],
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
                     subtitle: Text(
-                      abbreviations[_abbreviationKeys[i]] ?? '',
+                      _items[i]['subtitle'],
                       style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
