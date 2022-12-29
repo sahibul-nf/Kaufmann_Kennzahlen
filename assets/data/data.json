@@ -3,7 +3,7 @@
     {
       "abbreviation": "A",
       "title": "A/B Test",
-      "subtitle": "Testmethode, um die Reaktionen von Testpersonen auf zwei oder mehrere unterschiedliche Varianten (z. B. eines Produkts, einer Webseite, eines E-Mailings oder auch einer Grafik) zu ermitteln"
+      "subtitle": "<b><i><c>Testmethode</c></i></b>, um die Reaktionen von Testpersonen auf zwei oder mehrere unterschiedliche Varianten (z. B. eines Produkts, einer Webseite, eines E-Mailings oder auch einer Grafik) zu ermitteln"
     },
     {
       "abbreviation": "A",
@@ -95,6 +95,5 @@
       "title": "ACO",
       "subtitle": "Administrative Contracting Officer"
     }
-
-  ]
+  ] 
 }

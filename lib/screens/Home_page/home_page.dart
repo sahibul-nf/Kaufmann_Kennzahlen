@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../data/data.dart';
+import 'package:styled_text/styled_text.dart';
 import 'widgets/drawer.dart';
 
 
@@ -73,7 +72,7 @@ class HomePageState extends State<HomePage> {
           ),
           Flexible(
             child: ListView.builder(
-              itemCount: _items.length,//_abbreviationKeys.length,
+              itemCount: _items.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, i) {
                 return Card(
@@ -94,9 +93,17 @@ class HomePageState extends State<HomePage> {
                         style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
-                    subtitle: Text(
-                      _items[i]['subtitle'],
-                      style: const TextStyle(fontSize: 16.0),
+                    subtitle:StyledText(
+                       text :_items[i]['subtitle'],
+                       tags:  {
+                        'b': StyledTextTag(
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                        'i': StyledTextTag(
+                        style: const TextStyle(fontStyle: FontStyle.italic)),
+                        'c' :StyledTextTag(
+                        style: const TextStyle(color: Colors.red)),
+                       },
+                      // style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
                 );
