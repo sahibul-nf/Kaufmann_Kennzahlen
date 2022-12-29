@@ -1,9 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:styled_text/styled_text.dart';
 import 'widgets/drawer.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,12 +25,19 @@ class HomePageState extends State<HomePage> {
 
 // Fetch content from the json file
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/data/data.json');
+    final String response =
+        await rootBundle.loadString('assets/data/data.json');
     final data = await json.decode(response);
     setState(() {
       _items = data["items"];
     });
   }
+
+  void _openLink(BuildContext context, Map<String?, String?> attrs) async {
+    final String link = attrs['href']!;
+    launch(link);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +54,15 @@ class HomePageState extends State<HomePage> {
             child: TextField(
               controller: _controller,
               onChanged: (t) {
-                if(_controller.text == ""){
+                if (_controller.text == "") {
                   readJson();
-                }else {
-                  _items = _items.where((element) =>
-                      element['title'].toString().toLowerCase().contains(t.toLowerCase())).toList();
+                } else {
+                  _items = _items
+                      .where((element) => element['title']
+                          .toString()
+                          .toLowerCase()
+                          .contains(t.toLowerCase()))
+                      .toList();
                   setState(() {});
                 }
               },
@@ -89,20 +102,27 @@ class HomePageState extends State<HomePage> {
                       ),
                     ),
                     title: Text(
-                        _items[i]['title'],
-                        style: const TextStyle(
+                      _items[i]['title'],
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
-                    subtitle:StyledText(
-                       text :_items[i]['subtitle'],
-                       tags:  {
+                    subtitle: StyledText(
+                      text: _items[i]['subtitle'],
+                      tags: {
+                        'link': StyledTextActionTag(
+                          (_, attrs) => _openLink(context, attrs),
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
                         'b': StyledTextTag(
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.bold)),
                         'i': StyledTextTag(
-                        style: const TextStyle(fontStyle: FontStyle.italic)),
-                        'c' :StyledTextTag(
-                        style: const TextStyle(color: Colors.red)),
-                       },
+                            style:
+                                const TextStyle(fontStyle: FontStyle.italic)),
+                        'c': StyledTextTag(
+                            style: const TextStyle(color: Colors.red)),
+                      },
                       // style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
