@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -33,10 +33,19 @@ class HomePageState extends State<HomePage> {
     });
   }
 
+  Color _color = Color.fromARGB(255, 226, 232, 145);
+
   void _openLink(BuildContext context, Map<String?, String?> attrs) async {
     final String link = attrs['href']!;
+
+    setState(() {
+      _color = Color.fromRGBO(85, 26, 139, 1);
+    });
+
     launch(link);
   }
+
+  final bool _hasBeenPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +120,11 @@ class HomePageState extends State<HomePage> {
                       tags: {
                         'link': StyledTextActionTag(
                           (_, attrs) => _openLink(context, attrs),
-                          style:
-                              TextStyle(decoration: TextDecoration.underline),
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: _color,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
                         ),
                         'b': StyledTextTag(
                             style:
