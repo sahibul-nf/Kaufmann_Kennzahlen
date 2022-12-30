@@ -122,7 +122,7 @@ class HomePageState extends State<HomePage> {
                               decoration: TextDecoration.underline,
                               decorationColor: Color.fromRGBO(0, 0, 238, 1),
                               color: Color.fromRGBO(0, 0, 238, 1),
-                              fontSize: 18,
+                              // fontSize: 18,
                               ),
                         ),
                         'b': StyledTextTag(
