@@ -33,16 +33,14 @@ class HomePageState extends State<HomePage> {
     });
   }
 
-  Color _color = Color.fromARGB(255, 226, 232, 145);
+  // Color _color = Color.fromARGB(255, 226, 232, 145);
 
   void _openLink(BuildContext context, Map<String?, String?> attrs) async {
     final String link = attrs['href']!;
-
-    setState(() {
-      _color = Color.fromRGBO(85, 26, 139, 1);
-    });
-
     launch(link);
+    // setState(() {
+    //   _color = Color.fromRGBO(85, 26, 139, 1);
+    // });
   }
 
   final bool _hasBeenPressed = false;
@@ -122,9 +120,10 @@ class HomePageState extends State<HomePage> {
                           (_, attrs) => _openLink(context, attrs),
                           style: TextStyle(
                               decoration: TextDecoration.underline,
-                              color: _color,
+                              decorationColor: Color.fromRGBO(0, 0, 238, 1),
+                              color: Color.fromRGBO(0, 0, 238, 1),
                               fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w700),
                         ),
                         'b': StyledTextTag(
                             style:
