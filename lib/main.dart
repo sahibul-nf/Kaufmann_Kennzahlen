@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kaufmann_kennzahlen/screens/Splash_page/Splash_page.dart';
 import 'constants/colors.dart';
 import 'constants/theme.dart';
 import 'screens/welcome_page/main_screen.dart';
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       // To Navigate to the first page
-      home: const SplashScreen(),
+      home: const WelcomeScreen(),
       color: AppColors.color,
     );
   }
