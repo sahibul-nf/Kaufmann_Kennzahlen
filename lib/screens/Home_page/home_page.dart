@@ -116,14 +116,18 @@ class HomePageState extends State<HomePage> {
                     subtitle: StyledText(
                       text: _items[i]['subtitle'],
                       tags: {
+                        'list': StyledTextWidgetTag(Padding(
+                          padding: const EdgeInsets.only(right:8.0),
+                          child: Icon(Icons.square,size: 8,),
+                        )),
                         'link': StyledTextActionTag(
                           (_, attrs) => _openLink(context, attrs),
                           style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              decorationColor: Color.fromRGBO(0, 0, 238, 1),
-                              color: Color.fromRGBO(0, 0, 238, 1),
-                              // fontSize: 18,
-                              ),
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color.fromRGBO(0, 0, 238, 1),
+                            color: Color.fromRGBO(0, 0, 238, 1),
+                            // fontSize: 18,
+                          ),
                         ),
                         'b': StyledTextTag(
                             style:

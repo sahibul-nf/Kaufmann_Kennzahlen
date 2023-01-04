@@ -13,7 +13,7 @@
     {
       "abbreviation": "A",
       "title": "Advertorial",
-      "subtitle": "Werbeanzeige in redaktioneller Aufmachung"
+      "subtitle": "<list/> Werbeanzeige in redaktioneller Aufmachung\n<list/> 1 \n<list/> 2 \n<list/> 3 \n"
     },
     {
       "abbreviation": "A",
@@ -95,6 +95,5 @@
       "title": "ACO",
       "subtitle": "Administrative Contracting Officer"
     }
-
   ]
 }
