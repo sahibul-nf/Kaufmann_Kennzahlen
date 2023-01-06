@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, non_constant_identifier_names
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -101,46 +101,114 @@ class HomePageState extends State<HomePage> {
                   elevation: 10,
                   shadowColor: Colors.black.withOpacity(0.2),
                   child: ListTile(
-                    leading: Padding(
-                      padding: const EdgeInsets.only(left: 18.0),
-                      child: CircleAvatar(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        child: Text(_items[i]['abbreviation']),
-                      ),
-                    ),
-                    title: Text(
-                      _items[i]['title'],
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0),
-                    ),
-                    subtitle: StyledText(
-                      text: _items[i]['subtitle'],
-                      tags: {
-                        'list': StyledTextWidgetTag(Padding(
-                          padding: const EdgeInsets.only(right:8.0),
-                          child: Icon(Icons.square,size: 8,),
-                        )),
-                        'link': StyledTextActionTag(
-                          (_, attrs) => _openLink(context, attrs),
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color.fromRGBO(0, 0, 238, 1),
-                            color: Color.fromRGBO(0, 0, 238, 1),
-                            // fontSize: 18,
-                          ),
+                      leading: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          child: Text(_items[i]['abbreviation']),
                         ),
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'i': StyledTextTag(
-                            style:
-                                const TextStyle(fontStyle: FontStyle.italic)),
-                        'c': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                      },
-                      // style: const TextStyle(fontSize: 16.0),
-                    ),
-                  ),
+                      ),
+                      title: Text(
+                        _items[i]['title'],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20.0),
+                      ),
+                      subtitle: (_items[i]['subtitle'].length == 1)
+                          ? StyledText(
+                              text: _items[i]['subtitle'].toString().substring(
+                                  1,
+                                  _items[i]['subtitle'].toString().length - 1),
+                              tags: {
+                                'list': StyledTextWidgetTag(Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Icon(
+                                    Icons.square,
+                                    size: 8,
+                                  ),
+                                )),
+                                'link': StyledTextActionTag(
+                                  (_, attrs) => _openLink(context, attrs),
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor:
+                                        Color.fromRGBO(0, 0, 238, 1),
+                                    color: Color.fromRGBO(0, 0, 238, 1),
+                                    // fontSize: 18,
+                                  ),
+                                ),
+                                'b': StyledTextTag(
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
+                                'i': StyledTextTag(
+                                    style: const TextStyle(
+                                        fontStyle: FontStyle.italic)),
+                                'c': StyledTextTag(
+                                    style: const TextStyle(color: Colors.red)),
+                              },
+                              // style: const TextStyle(fontSize: 16.0),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: ScrollPhysics(),
+                              itemCount: _items[i]['subtitle'].length,
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top:6.0),
+                                      child: Icon(
+                                        Icons.square,
+                                        size: 8,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Expanded(
+                                      child: StyledText(
+                                        text: _items[i]['subtitle'][index]
+                                            .toString(),
+                                        tags: {
+                                          'list': StyledTextWidgetTag(Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 8.0),
+                                            child: Icon(
+                                              Icons.square,
+                                              size: 8,
+                                            ),
+                                          )),
+                                          'link': StyledTextActionTag(
+                                            (_, attrs) =>
+                                                _openLink(context, attrs),
+                                            style: TextStyle(
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              decorationColor:
+                                                  Color.fromRGBO(0, 0, 238, 1),
+                                              color:
+                                                  Color.fromRGBO(0, 0, 238, 1),
+                                              // fontSize: 18,
+                                            ),
+                                          ),
+                                          'b': StyledTextTag(
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold)),
+                                          'i': StyledTextTag(
+                                              style: const TextStyle(
+                                                  fontStyle: FontStyle.italic)),
+                                          'c': StyledTextTag(
+                                              style: const TextStyle(
+                                                  color: Colors.red)),
+                                        },
+                                        // style: const TextStyle(fontSize: 16.0),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            )),
                 );
               },
             ),
