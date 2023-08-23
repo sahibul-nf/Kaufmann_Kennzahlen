@@ -6,3 +6,4 @@ A E-commerce Glossary Flutter App
 
 Scaning the following qr code
 
+![Preview](qrcode.gif)
