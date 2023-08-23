@@ -9,10 +9,10 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("About Us"),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const[
+          children: [
             Text(
               "\n\nPostanschrift",
               style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
@@ -23,7 +23,7 @@ class AboutScreen extends StatelessWidget {
             Text(
               "Dr. Marius Ebert\nHauptstraße 127\n69117 Heidelberg\nBiswajit Behera\nEmail: info@spasslerndenk.de",
               style: TextStyle(fontSize: 20.0),
-            )
+            ),
           ],
         ),
       ),

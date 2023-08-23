@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'constants/colors.dart';
-import 'constants/theme.dart';
-import 'screens/welcome_page/main_screen.dart';
 
+import 'screens/main_screen.dart';
+import 'themes/theme.dart';
 
 main() async {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // To Navigate to the first page
       home: const WelcomeScreen(),
-      color: AppColors.color,
     );
   }
 }

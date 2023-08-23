@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../about_page/about_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../screens/about_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -33,11 +35,19 @@ class AppDrawer extends StatelessWidget {
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Center(
-                            child: Text(
-                              "https://www.spasslerndenk.com/ihk-lernkarten",
-                              style: TextStyle(fontSize: 20.0),
+                            child: TextButton(
+                              child: const Text(
+                                "https://www.spasslerndenk.com/ihk-lernkarten",
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                              onPressed: () {
+                                launchUrl(
+                                  Uri.parse(
+                                      "https://www.spasslerndenk.com/ihk-lernkarten"),
+                                );
+                              },
                             ),
                           )
                         ],
