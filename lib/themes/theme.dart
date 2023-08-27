@@ -8,6 +8,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(seedColor: color),
     useMaterial3: true,
   );
+  
   static final darkTheme = ThemeData.from(
     colorScheme: ColorScheme.fromSeed(
       seedColor: color,

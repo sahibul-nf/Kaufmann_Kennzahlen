@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kaufmann_kennzahlen/screens/main_screen.dart';
+import 'package:kaufmann_kennzahlen/screens/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
