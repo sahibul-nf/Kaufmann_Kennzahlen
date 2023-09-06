@@ -22,40 +22,41 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: [
             const SizedBox(height: 50),
             Image.asset('assets/images/smallview.png'),
-            const Text("Willkommen",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                )),
+            const Text(
+              "Willkommen",
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
             const SizedBox(height: 50),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
               child: RichText(
                 text: TextSpan(
-                    text: " Kaufleute im \n E-COMMERCE\n\n",
-                    style: GoogleFonts.oswald(
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                      ),
+                  text: " Kaufleute im \n E-COMMERCE\n\n",
+                  style: GoogleFonts.oswald(
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
                     ),
-                    children: [
-                      TextSpan(
-                        text: "   GLOSSAR",
-                        // textAlign: TextAlign.center,
-                        style: GoogleFonts.oswald(
-                          textStyle: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 32,
-                          ),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "   GLOSSAR",
+                      // textAlign: TextAlign.center,
+                      style: GoogleFonts.oswald(
+                        textStyle: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 32,
                         ),
-                      )
-                    ]),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            const SizedBox(
-              height: 35,
-            ),
+            const SizedBox(height: 35),
             const Padding(
               padding: EdgeInsets.all(30.0),
               child: Text(
@@ -69,9 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,

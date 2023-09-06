@@ -11,7 +11,7 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: <Widget>[
-          Image.asset("assets/happy.gif"),
+          Image.asset("assets/images/happy.gif"),
           ListTile(
             leading: const Icon(Icons.info),
             title: const Text("Über Uns"),
