@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 import '../widgets/drawer.dart';
 import '../widgets/list_terms.dart';
@@ -42,12 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> fetchData() async {
     // File path
     String path = "assets/data/glossary.json";
+    String url =
+        "https://raw.githubusercontent.com/sahibul-nf/Kaufmann_Kennzahlen/main/assets/data/data.json";
+    String response;
 
     // Fetch content from the json file
-    final String response = await rootBundle.loadString(path);
+    if (kDebugMode) {
+      // Load the json file from the assets folder
+      response = await rootBundle.loadString(path);
+    } else {
+      // Load the json file from the web
+      response = await http.get(Uri.parse(url)).then((value) => value.body);
+    }
 
     // Decode json
-    final data = await jsonDecode(response);
+    final data = jsonDecode(response);
 
     // Extract data from json and store in a List
     setState(() {
