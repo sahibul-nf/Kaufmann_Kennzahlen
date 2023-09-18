@@ -1,48 +1,65 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors, non_constant_identifier_names
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:styled_text/styled_text.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/drawer.dart';
+import '../widgets/list_terms.dart';
+import '../widgets/search_form.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  HomeScreenState createState() => HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
-  List _items = [];
+class _HomeScreenState extends State<HomeScreen> {
   final _controller = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-    readJson();
+  final _focusNode = FocusNode();
+
+  List _items = [];
+
+  void onSearching(String value) {
+    // Handle search if the value is empty
+    if (value.isEmpty) {
+      // Reset the list of terms
+      fetchData();
+      return;
+    }
+
+    // Filter the list of terms
+    List filteredTerms = _items.where((item) {
+      return item["title"].toLowerCase().contains(value.toLowerCase());
+    }).toList();
+
+    // Update the list of terms
+    setState(() {
+      _items = filteredTerms;
+    });
   }
 
-// Fetch content from the json file
-  Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/data/data.json');
-    final data = await json.decode(response);
+  Future<void> fetchData() async {
+    // File path
+    String path = "assets/data/glossary.json";
+
+    // Fetch content from the json file
+    final String response = await rootBundle.loadString(path);
+
+    // Decode json
+    final data = await jsonDecode(response);
+
+    // Extract data from json and store in a List
     setState(() {
       _items = data["items"];
     });
   }
 
-  // Color _color = Color.fromARGB(255, 226, 232, 145);
+  @override
+  void initState() {
+    fetchData();
 
-  void _openLink(BuildContext context, Map<String?, String?> attrs) async {
-    final String link = attrs['href']!;
-    launch(link);
-    // setState(() {
-    //   _color = Color.fromRGBO(85, 26, 139, 1);
-    // });
+    super.initState();
   }
 
   @override
@@ -56,137 +73,24 @@ class HomeScreenState extends State<HomeScreen> {
       drawer: const AppDrawer(),
       body: Column(
         children: [
-          buildSearchFormWidget(),
-          buildListOfTermsWidget(),
-        ],
-      ),
-    );
-  }
-
-  buildSearchFormWidget() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      child: TextField(
-        controller: _controller,
-        onChanged: (t) {
-          if (_controller.text == "") {
-            readJson();
-          } else {
-            _items = _items
-                .where((element) => element['title']
-                    .toString()
-                    .toLowerCase()
-                    .contains(t.toLowerCase()))
-                .toList();
-            setState(() {});
-          }
-        },
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          hintText: 'Schreibe etwas...',
-          prefixIcon: const Icon(Icons.search),
-          isDense: true,
-          suffixIcon: IconButton(
-            onPressed: () {
-              readJson();
-              FocusScope.of(context).unfocus();
-              setState(() {});
+          // Search Form
+          SearchForm(
+            controller: _controller,
+            focusNode: _focusNode,
+            onChanged: onSearching,
+            onClose: () {
+              // Reset the list of terms
+              fetchData();
+              // Unfocus the TextField
+              _focusNode.unfocus();
+              // Clear the TextField
               _controller.clear();
             },
-            icon: const Icon(Icons.close),
           ),
-        ),
+          // List of Terms
+          ListOfTerms(items: _items)
+        ],
       ),
-    );
-  }
-
-  buildListOfTermsWidget() {
-    return Flexible(
-      child: ListView.builder(
-        itemCount: _items.length,
-        physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.only(bottom: 20),
-        itemBuilder: (context, index) {
-          return Card(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 10),
-            elevation: 10,
-            shadowColor: Colors.black.withOpacity(0.2),
-            child: ListTile(
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 18.0),
-                child: CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  child: Text(_items[index]['abbreviation']),
-                ),
-              ),
-              title: Text(
-                _items[index]['title'],
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 20.0),
-              ),
-              subtitle: buildTermSubtitle(index),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  buildTermSubtitle(int i) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: ScrollPhysics(),
-      itemCount: _items[i]['subtitle'].length,
-      itemBuilder: (context, index) {
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 6.0),
-              child: Icon(
-                Icons.square,
-                size: 8,
-              ),
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              child: StyledText(
-                textHeightBehavior: TextHeightBehavior(
-                  applyHeightToFirstAscent: true,
-                ),
-                text: _items[i]['subtitle'][index].toString(),
-                tags: {
-                  'list': StyledTextWidgetTag(Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Icon(
-                      Icons.square,
-                      size: 8,
-                    ),
-                  )),
-                  'link': StyledTextActionTag(
-                    (_, attrs) => _openLink(context, attrs),
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Color.fromRGBO(0, 0, 238, 1),
-                      color: Color.fromRGBO(0, 0, 238, 1),
-                      // fontSize: 18,
-                    ),
-                  ),
-                  'b': StyledTextTag(
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  'i': StyledTextTag(
-                      style: const TextStyle(fontStyle: FontStyle.italic)),
-                  'c': StyledTextTag(style: const TextStyle(color: Colors.red)),
-                },
-                // style: const TextStyle(fontSize: 16.0),
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../screens/about_screen.dart';
-
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
@@ -12,15 +10,6 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.asset("assets/images/happy.gif"),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text("Über Uns"),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const AboutScreen(),
-              ),
-            ),
-          ),
           ListTile(
             leading: const Icon(Icons.language),
             title: const Text("Quellen"),
@@ -43,10 +32,8 @@ class AppDrawer extends StatelessWidget {
                                 style: TextStyle(fontSize: 20.0),
                               ),
                               onPressed: () {
-                                launchUrl(
-                                  Uri.parse(
-                                      "https://www.spasslerndenk.com/ihk-lernkarten"),
-                                );
+                                launchUrl(Uri.parse(
+                                    "https://www.spasslerndenk.com/ihk-lernkarten"));
                               },
                             ),
                           )
